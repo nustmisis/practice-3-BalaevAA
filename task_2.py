@@ -21,6 +21,13 @@ import re
 
 
 def get_plate_type(plate):
-    # ваше решение:
-
-    return "Fail!"
+  car_num = {
+      "1А": r"\b[авекмнорстух]{1}\d{3}[авекмнорстух]{2} \d{2}",
+      "1Б": r"\b[авекмнорстух]{2}\d{3} \d{2}",
+      "2" : r"\b[авекмнорстух]{2}\d{4} \d{2}",
+      "3" : r"\b\d{4}[авекмнорстух]{2} \d{2}"
+  }
+  for k in car_num:
+    if re.findall(car_num[k], plate) != [] and re.findall(car_num[k], plate) == [plate]:
+      return k
+  return "Fail!"

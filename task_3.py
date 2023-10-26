@@ -19,7 +19,7 @@
 --+-------------------------------------
 1 | +7 123 456-78-90    +7 123 456-78-90
 2 | 8(123)456-78-90     +7 123 456-78-90
-3 | 1234567890          +7 123 456-78-90
+3 | 1234567890          Fail!
 4 | 123456789           Fail!
 5 | +9 123 456-78-90    Fail!
 6 | +7 123 456+78=90    Fail!
@@ -32,6 +32,11 @@ import re
 
 
 def format_phone_number(text):
-    # ваше решение:
-
+  valid_number = re.match(r'^((\+7|8|7)(\s*|-\s*)((\s*|-\s*|\()\d{3}(\s*|-\s*|\)\s*)(\s*|-\s*|\s*)\d{3}(\s*|-\s*)\d{2}(\s*|-\s*)\d{2})|\d{10})', text)
+  if valid_number:
+    new_str = re.sub(r'[-+\s\(\)]', '', text)
+    if len(new_str) == 11:
+      new_str = new_str[1:]
+    return f'+7 {new_str[:3]} {new_str[3:6]}-{new_str[6:8]}-{new_str[8:10]}'
+  else:
     return "Fail!"

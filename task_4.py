@@ -29,8 +29,8 @@ _REPL_0 = r"\1\1"  # строка замены
 # aZc   ---> a!Z!c
 # aZZc  ---> a!Z!!Z!c
 # aBaCa ---> a!B!a!C!a
-PATTERN_1 = ""
-REPL_1 = ""
+PATTERN_1 = r"([A-Z])"
+REPL_1 = r"!\1!"
 
 
 # abc    ---> abc
@@ -38,8 +38,8 @@ REPL_1 = ""
 # azzzc  ---> azc
 # arrrrc ---> arc
 # xxxxxx ---> x
-PATTERN_2 = ""
-REPL_2 = ""
+PATTERN_2 = r"(\w)\1+"
+REPL_2 = r"\1"
 
 
 # this is text         ---> this is text
@@ -47,11 +47,11 @@ REPL_2 = ""
 # this is is is text   ---> this *is* text
 # this is text text    ---> this is *text*
 # this is is text text ---> this *is* *text*
-PATTERN_3 = ""
-REPL_3 = ""
+PATTERN_3 = r"\b(\w+)(\s\1)+"
+REPL_3 = r"*\1*"
 
 # one two three ---> two one three
 # dog cat wolf  ---> cat dog wolf
 # goose car rat ---> goose rat car
-PATTERN_4 = ""
-REPL_4 = ""
+PATTERN_4 = r"\b(\w{3}) \b(\w{3})"
+REPL_4 = r"\2 \1"
